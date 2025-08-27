@@ -1,60 +1,79 @@
-# TrainMapFrontend
+# Train Map Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+電車路線図フロントエンドアプリケーション
 
-## Development server
+## プロジェクト構成
 
-To start a local development server, run:
+### 基本アーキテクチャ
+
+このプロジェクトは、FAANG企業のベストプラクティスに基づいた構造化されたAngularアプリケーションです。
+
+```
+src/
+├── app/
+│   ├── core/                      # アプリケーションの核心機能
+│   │   ├── interfaces/            # TypeScript インターフェース定義
+│   │   ├── services/             # グローバルサービス
+│   │   └── interceptors/         # HTTP インターセプター
+│   │
+│   ├── features/                 # 機能別モジュール
+│   │   └── train-map/           # 電車路線図機能
+│   │       ├── components/      # フィーチャー固有のコンポーネント
+│   │       ├── pages/          # ページコンポーネント
+│   │       └── services/       # フィーチャー固有のサービス
+│   │
+│   └── shared/                  # 共有リソース
+│       ├── components/         # 再利用可能コンポーネント
+│       ├── pipes/             # カスタムパイプ
+│       ├── directives/        # カスタムディレクティブ
+│       └── utils/             # ユーティリティ関数
+│
+├── assets/                      # 静的リソース
+│   └── data/                   # データファイル
+│       ├── raw/               # 生データ（CSV等）
+│       └── processed/         # 処理済みデータ（JSON）
+│
+└── docs/                       # ドキュメント
+    └── data-specs/            # データ仕様書
+```
+
+### アーキテクチャ原則
+
+#### 1. 画面・コンポーネント配置
+- **Pages**: `src/app/features/[feature]/pages/` - ルーティング対象の画面コンポーネント
+- **Components**: `src/app/features/[feature]/components/` - フィーチャー内の再利用コンポーネント
+- **Shared Components**: `src/app/shared/components/` - 複数フィーチャー間で共有するコンポーネント
+
+#### 2. バックエンド連携
+- **Core Services**: `src/app/core/services/` - API基盤サービス（認証、HTTP設定等）
+- **Feature Services**: `src/app/features/[feature]/services/` - フィーチャー固有のAPI呼び出し
+- **Interceptors**: `src/app/core/interceptors/` - HTTP リクエスト・レスポンスの共通処理
+
+#### 3. データ管理
+- **Raw Data**: `src/assets/data/raw/` - 外部から取得した生データ
+- **Processed Data**: `src/assets/data/processed/` - アプリで利用可能な形式に変換済みデータ
+- **Interfaces**: `src/app/core/interfaces/` - データ構造の型定義
+
+#### 4. 開発・運用
+- **Utils**: `src/app/shared/utils/` - データ処理、変換ユーティリティ
+- **Docs**: `docs/data-specs/` - データ仕様書、API仕様書
+
+## 開発サーバー起動
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+ブラウザで `http://localhost:4200/` にアクセスしてください。
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## ビルド
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## テスト
 
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# train-map-frontend
