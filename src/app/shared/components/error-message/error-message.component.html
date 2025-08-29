@@ -1,0 +1,15 @@
+@if (error) {
+  <div class="error-message neu-card">
+    <div class="error-content">
+      <h3>エラーが発生しました</h3>
+      @for (message of getErrorMessages(); track message) {
+        <p class="error-text">{{ message }}</p>
+      }
+      @if (showRetryButton) {
+        <button class="neu-button danger mt-4" (click)="onRetryClick()">
+          {{ retryButtonText }}
+        </button>
+      }
+    </div>
+  </div>
+}

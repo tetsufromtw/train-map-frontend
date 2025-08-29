@@ -1,0 +1,33 @@
+.error-message {
+  background: #fff5f5;
+  border-color: var(--color-danger);
+  margin: 1rem 0;
+  
+  &:hover {
+    transform: none;
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+.error-content {
+  
+  h3 {
+    color: var(--color-danger);
+    font-family: var(--font-accent);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+  }
+  
+  .error-text {
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-secondary);
+    line-height: 1.5;
+    font-weight: 400;
+    
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,1 +1,242 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles - Neubrutalism Design System */
+
+// Import Google Fonts - にゃしぃフォント系
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Kiwi+Maru:wght@300;400;500&family=Stick:wght@400&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap');
+
+// Neubrutalism Color Palette
+:root {
+  /* Core surfaces */
+  --bg-main: #FFFFFF; /* 主背景（乾淨白）；可切換 cream 模式見下 */
+  --bg-alt: #FAF7F2; /* 奶油色：選單選中、區塊底 */
+  --surface: #FFFFFF; /* 卡片/面板 */
+  --fg: #111418; /* 主文色 */
+  --muted: #6B7280; /* 次要文字 */
+  --border: #E7E1DA; /* 邊框 */
+
+  /* Brand-inspired */
+  --primary: #9F88C8; /* 主按鈕/重點連結 */
+  --primary-ink: #2A2250; /* 主色上的文字（深紫），確保對比 */
+  --accent-1: #D9C2C0; /* 柔霧粉 */
+  --accent-2: #B9A1D6; /* 中階紫 */
+
+  /* Announce / Promo（深墨綠區塊） */
+  --announce-bg: #0E3B2E; /* 深綠底（高對比） */
+  --announce-fg: #FFFFFF; /* 文字白 */
+
+  /* Focus ring */
+  --ring: 0 0 0 3px rgba(159,136,200,0.35);
+  
+  // Mapped colors for compatibility
+  --color-primary: var(--primary);
+  --color-secondary: var(--accent-2);
+  --color-accent: var(--accent-1);
+  --color-warning: #ffe66d;
+  --color-danger: #ff4757;
+  --color-success: #2ed573;
+  
+  --color-bg-primary: var(--bg-main);
+  --color-bg-secondary: var(--bg-alt);
+  --color-bg-card: var(--surface);
+  
+  --color-text-primary: var(--fg);
+  --color-text-secondary: var(--muted);
+  --color-text-muted: var(--muted);
+  
+  --color-border: var(--border);
+  --color-shadow: var(--fg);
+  
+  // Neubrutalism shadows
+  --shadow-small: 3px 3px 0px var(--color-shadow);
+  --shadow-medium: 5px 5px 0px var(--color-shadow);
+  --shadow-large: 8px 8px 0px var(--color-shadow);
+  --shadow-hover: 2px 2px 0px var(--color-shadow);
+  
+  // Font families - にゃしぃフォント系
+  --font-primary: 'Yusei Magic', 'Kiwi Maru', cursive;
+  --font-secondary: 'Kiwi Maru', 'M PLUS 1p', sans-serif;
+  --font-accent: 'Stick', 'M PLUS 1p', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+// Global Reset & Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+// Neubrutalism Base Components
+.neu-card {
+  background: var(--color-bg-card);
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-medium);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-large);
+  }
+}
+
+.neu-button {
+  font-family: var(--font-accent);
+  font-weight: normal;
+  padding: 0.75rem 1.5rem;
+  border: 3px solid var(--color-border);
+  background: var(--color-primary);
+  color: var(--primary-ink);
+  box-shadow: var(--shadow-small);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+  
+  &.secondary {
+    background: var(--color-secondary);
+  }
+  
+  &.accent {
+    background: var(--color-accent);
+  }
+  
+  &.danger {
+    background: var(--color-danger);
+  }
+  
+  &.success {
+    background: var(--color-success);
+  }
+}
+
+.neu-input {
+  font-family: var(--font-secondary);
+  padding: 0.75rem;
+  border: 3px solid var(--color-border);
+  background: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    box-shadow: var(--ring);
+    transform: translate(-1px, -1px);
+  }
+}
+
+.neu-select {
+  font-family: var(--font-secondary);
+  padding: 0.75rem;
+  border: 3px solid var(--color-border);
+  background: white;
+  font-size: 1rem;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+    box-shadow: var(--ring);
+  }
+}
+
+// Typography - にゃしぃフォント調整
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  margin-bottom: 0.5em;
+  color: var(--color-text-primary);
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: normal;
+  text-shadow: 2px 2px 0px var(--color-shadow);
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: normal;
+  text-shadow: 1px 1px 0px var(--color-shadow);
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  font-family: var(--font-accent);
+}
+
+// Layout utilities
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+// Animation
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -10px, 0);
+  }
+  70% {
+    transform: translate3d(0, -5px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.bounce {
+  animation: bounce 1s ease infinite;
+}

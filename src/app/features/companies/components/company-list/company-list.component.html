@@ -1,0 +1,63 @@
+<!-- Companies List -->
+<section class="companies-grid">
+  @for (company of companies; track company.companyCode) {
+    <div class="company-card neu-card">
+      <div class="company-header">
+        <h3 class="company-name">{{ company.companyName }}</h3>
+        <div class="company-badges">
+          <span class="badge type-badge" [attr.data-type]="company.companyType">
+            {{ getCompanyTypeLabel(company.companyType) }}
+          </span>
+          <span class="badge status-badge" [attr.data-status]="company.status">
+            {{ getCompanyStatusLabel(company.status) }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="company-details">
+        @if (company.companyNameKana) {
+          <p class="detail-item">
+            <span class="label">カナ:</span> {{ company.companyNameKana }}
+          </p>
+        }
+        @if (company.companyNameOfficial) {
+          <p class="detail-item">
+            <span class="label">正式名称:</span> {{ company.companyNameOfficial }}
+          </p>
+        }
+        <p class="detail-item">
+          <span class="label">事業者コード:</span> {{ company.companyCode }}
+        </p>
+        <p class="detail-item">
+          <span class="label">鉄道コード:</span> {{ company.railwayCode }}
+        </p>
+        @if (company.companyUrl) {
+          <p class="detail-item">
+            <span class="label">URL:</span> 
+            <a [href]="company.companyUrl" target="_blank" class="company-link">
+              {{ company.companyUrl }}
+            </a>
+          </p>
+        }
+      </div>
+      
+      <div class="company-actions">
+        <button class="neu-button accent" (click)="onEditClick(company)">
+          編集
+        </button>
+        <button class="neu-button danger" (click)="onDeleteClick(company)">
+          削除
+        </button>
+      </div>
+    </div>
+  }
+</section>
+
+<!-- Pagination -->
+<app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  [total]="total"
+  [limit]="limit"
+  (pageChange)="onPageChange($event)"
+></app-pagination>

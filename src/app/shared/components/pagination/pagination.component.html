@@ -1,0 +1,67 @@
+<div class="pagination-container">
+  @if (showPageInfo) {
+    <div class="page-info">
+      <span class="info-text">
+        {{ startItem }}-{{ endItem }} / {{ total }}件
+      </span>
+    </div>
+  }
+  
+  <div class="pagination">
+    <!-- First Page -->
+    @if (currentPage > 1) {
+      <button 
+        class="neu-button secondary page-button" 
+        (click)="onPageChange(1)"
+        title="最初のページ"
+      >
+        最初
+      </button>
+    }
+    
+    <!-- Previous Page -->
+    @if (currentPage > 1) {
+      <button 
+        class="neu-button secondary page-button" 
+        (click)="onPageChange(currentPage - 1)"
+        title="前のページ"
+      >
+        前
+      </button>
+    }
+    
+    <!-- Page Numbers -->
+    @for (page of getVisiblePages(); track page) {
+      <button 
+        class="neu-button page-button"
+        [class.active]="page === currentPage"
+        [class.secondary]="page !== currentPage"
+        (click)="onPageChange(page)"
+      >
+        {{ page }}
+      </button>
+    }
+    
+    <!-- Next Page -->
+    @if (currentPage < totalPages) {
+      <button 
+        class="neu-button secondary page-button" 
+        (click)="onPageChange(currentPage + 1)"
+        title="次のページ"
+      >
+        次
+      </button>
+    }
+    
+    <!-- Last Page -->
+    @if (currentPage < totalPages) {
+      <button 
+        class="neu-button secondary page-button" 
+        (click)="onPageChange(totalPages)"
+        title="最後のページ"
+      >
+        最後
+      </button>
+    }
+  </div>
+</div>

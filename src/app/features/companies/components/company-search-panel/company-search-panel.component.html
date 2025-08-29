@@ -1,0 +1,78 @@
+<!-- Filters Section -->
+<section class="filters-section neu-card">
+  <h3>検索・フィルタ</h3>
+  <form class="filters-form" (submit)="onSearchSubmit(); $event.preventDefault()">
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="search">会社名検索</label>
+        <input 
+          id="search"
+          type="text" 
+          class="neu-input"
+          placeholder="会社名を入力..."
+          [value]="searchTerm"
+          (input)="onSearchTermChange($any($event.target).value)"
+          (keyup.enter)="onSearchSubmit()"
+        >
+      </div>
+      
+      <div class="filter-group">
+        <label for="type">事業者区分</label>
+        <select 
+          id="type"
+          class="neu-select"
+          [value]="selectedType"
+          (change)="onTypeChange($any($event.target).value)"
+        >
+          <option value="">すべて</option>
+          <option [value]="CompanyType.OTHER">その他</option>
+          <option [value]="CompanyType.JR">JR</option>
+          <option [value]="CompanyType.MAJOR_PRIVATE">大手私鉄</option>
+          <option [value]="CompanyType.SEMI_MAJOR_PRIVATE">準大手私鉄</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="status">運用状態</label>
+        <select 
+          id="status"
+          class="neu-select"
+          [value]="selectedStatus"
+          (change)="onStatusChange($any($event.target).value)"
+        >
+          <option value="">すべて</option>
+          <option [value]="CompanyStatus.ACTIVE">運用中</option>
+          <option [value]="CompanyStatus.PRE_OPERATION">運用前</option>
+          <option [value]="CompanyStatus.ABOLISHED">廃止</option>
+        </select>
+      </div>
+      
+      <div class="filter-actions">
+        <button type="submit" class="neu-button accent search-button">
+          検索
+        </button>
+        <button type="button" class="neu-button secondary" (click)="onClearFilters()">
+          クリア
+        </button>
+      </div>
+    </div>
+  </form>
+  
+  <!-- Search Results Summary -->
+  @if (!loading) {
+    <div class="search-results-summary">
+      @if (searchTerm || selectedType !== '' || selectedStatus !== '') {
+        <p class="results-info">
+          <span class="results-count">{{ total }}件</span>の結果が見つかりました
+          @if (searchTerm) {
+            <span class="search-term">「{{ searchTerm }}」</span>で検索
+          }
+        </p>
+      } @else {
+        <p class="results-info">
+          全<span class="results-count">{{ total }}件</span>の鉄道会社を表示中
+        </p>
+      }
+    </div>
+  }
+</section>
